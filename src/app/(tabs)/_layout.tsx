@@ -1,0 +1,31 @@
+import { NativeTabs } from 'expo-router/native-tabs';
+
+export default function TabLayout() {
+  return (
+    <NativeTabs
+      tintColor="#ffd33d"
+      backgroundColor="#25292e"
+      indicatorColor="rgba(255, 211, 61, 0.2)" //sets the color of the indicator behind the active tab on android/web
+      rippleColor="rgba(255, 211, 61, 0.3)" //sets the color of the ripple effect on android
+    >
+
+
+      <NativeTabs.Trigger name="index">
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf={{ default: 'house', selected: 'house.fill' }}
+          md="home"
+        />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="profile">
+        <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf={{ default: 'person', selected: 'person.fill' }}
+          md="person"
+        />
+      </NativeTabs.Trigger>
+    </NativeTabs>
+  );
+}
+
+
