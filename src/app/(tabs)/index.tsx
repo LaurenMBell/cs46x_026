@@ -1,14 +1,27 @@
-import { Link } from 'expo-router';
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
+
+import Button from '@/components/button';
+import ImageViewer from '@/components/image-viewer';
+
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+const PlaceholderImage = require('@/assets/images/beaver_background-image.png');
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
-      <Link href="/profile" style={styles.button}>
-        Profile
-      </Link>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.imageContainer}>
+        <ImageViewer imgSource={PlaceholderImage} />
+      </View>
+      <View style={styles.footerContainer}>
+        <Button
+          theme="primary"
+          label="Choose a photo"
+          onPress={() => alert('You pressed a button.')}
+        />        
+        <Button label="Use this photo" onPress={() => alert('You pressed a button.')} />
+      </View>
+    </SafeAreaView> 
   );
 }
 
@@ -25,5 +38,18 @@ const styles = StyleSheet.create({
   },
   button : {
     fontSize: 20
-  }
+  },
+  imageContainer: {
+    flex: 1,
+    paddingTop: Platform.select({ web: 96, default: 20 }),
+  },
+  image: {
+    width: 320,
+    height: 440,
+    borderRadius: 18,
+  },
+  footerContainer: {
+    flex: 1 / 3,
+    alignItems: 'center',
+  },
 });
