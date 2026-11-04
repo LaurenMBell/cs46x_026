@@ -1,9 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {useAuthSession} from "@/providers/AuthProvider";
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function ProfileScreen() {
+  const {signOut, token} = useAuthSession()
+  const logout = () => {
+    signOut();
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Profile screen</Text>
+      <Button title={"Logout"} onPress={logout}/>
     </View>
   );
 }

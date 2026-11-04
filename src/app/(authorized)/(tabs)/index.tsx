@@ -18,10 +18,10 @@ export default function Index() {
           theme="primary"
           label="Choose a photo"
           onPress={() => alert('You pressed a button.')}
-        />        
+        />
         <Button label="Use this photo" onPress={() => alert('You pressed a button.')} />
       </View>
-    </SafeAreaView> 
+    </SafeAreaView>
   );
 }
 
