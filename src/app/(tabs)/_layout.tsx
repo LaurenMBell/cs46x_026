@@ -23,11 +23,18 @@ export default function TabLayout() {
           md="filter"
         />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="upload">
+        <NativeTabs.Trigger.Label>Upload</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
-          sf={{ default: 'house', selected: 'house.fill' }}
-          md="home"
+          sf={{ default: 'camera', selected: 'camera.fill' }}
+          md="photo_camera"
+        />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="index">
+        <NativeTabs.Trigger.Label>Map</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf={{ default: 'map', selected: 'map.fill' }}
+          md="map"
         />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="profile">
@@ -35,13 +42,6 @@ export default function TabLayout() {
         <NativeTabs.Trigger.Icon
           sf={{ default: 'person', selected: 'person.fill' }}
           md="person"
-        />
-      </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="map">
-        <NativeTabs.Trigger.Label>Map</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          sf={{ default: 'map', selected: 'map.fill' }}
-          md="map"
         />
       </NativeTabs.Trigger>
     </NativeTabs>
