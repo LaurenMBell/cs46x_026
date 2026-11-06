@@ -33,7 +33,13 @@
           "imageWidth": 76
         }
       ],
-      "expo-image"
+      "expo-image", 
+      [
+        "expo-media-library",
+        {
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos and videos."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
