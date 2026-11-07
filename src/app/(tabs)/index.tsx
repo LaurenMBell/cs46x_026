@@ -13,9 +13,12 @@ function staticMapUrl(opts: {
   const { lng, lat, zoom, width, height } = opts;
   const marker = `pin-l+ff0000(${lng},${lat})`;
 
+  const w = Math.min(1280, Math.max(1, Math.round(width)));
+  const h = Math.min(1280, Math.max(1, Math.round(height)));
+
   return (
     `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/` +
-    `${marker}/${lng},${lat},${zoom}/${width}x${height}@2x` +
+    `${marker}/${lng},${lat},${zoom}/${w}x${h}@2x` +
     `?access_token=${TOKEN}`
   );
 }

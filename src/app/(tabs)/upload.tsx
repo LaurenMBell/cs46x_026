@@ -143,3 +143,9 @@ const styles = StyleSheet.create({
 
   }
 });
+
+/*
+tutorials and docs used: 
+- https://medium.com/@YAGNIK09/react-native-file-image-picker-with-expo-documentpicker-imagepicker-camera-2b3699b3db99
+- https://docs.expo.dev/versions/latest/sdk/imagepicker/
+*/
