@@ -2,6 +2,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Linking from "expo-linking";
 
 import Button from '@/components/button';
 import ImageViewer from '@/components/image-viewer';
@@ -10,32 +11,52 @@ import CircleButton from '@/components/circle-button';
 import IconButton from '@/components/icon-button';
 
 
-const PlaceholderImage = require('@/assets/images/beaver_background-image.png');
+const PlaceholderImage = require('@/assets/images/upload_default.png');
 
 export default function UploadScreen() {
-  const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
-  const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
+  const [asset, setAsset] = useState<ImagePicker.ImagePickerAsset | null>(null);
+  const [showAppOptions, setShowAppOptions] = useState(false);
+
+  const handleResult = (result: ImagePicker.ImagePickerResult) => {
+    if (!result.canceled) {
+      setAsset(result.assets[0]);
+      setShowAppOptions(true);
+    }
+  };
 
   const pickImageAsync = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsEditing: true,
       quality: 1,
+      exif: true, // photo metadata
     });
+    handleResult(result);
+  };
 
-    if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri);
-      setShowAppOptions(true);
-    } else {
-      alert('You did not select any image.');
+  const openCameraAsync = async () => {
+    const permission = await ImagePicker.requestCameraPermissionsAsync();
+    if (!permission.granted) {
+      alert('Permission required to use camera!');
+      if (!permission.canAskAgain) Linking.openSettings();
+      return;
     }
+
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      quality: 1,
+      exif: true,
+    });
+    handleResult(result);
   };
 
   const onReset = () => {
+    setAsset(null);
     setShowAppOptions(false);
   };
 
-  const onAddSticker = () => {
+  const onAddSighting = () => {
     // we will implement this later
   };
 
@@ -43,10 +64,12 @@ export default function UploadScreen() {
     // we will implement this later
   };
 
+
   return (
+    // POST UPLOAD OPTIONS
     <SafeAreaView style={styles.container}>
       <View style={styles.imageContainer}>
-        <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
+        <ImageViewer imgSource={PlaceholderImage} selectedImage={asset?.uri} />
       </View>
       {showAppOptions ? (
         <View style={styles.footerContainer}>
@@ -60,7 +83,7 @@ export default function UploadScreen() {
               label="Reset"
               onPress={onReset}
             />
-            <CircleButton onPress={onAddSticker} />
+            <CircleButton onPress={onAddSighting} />
             <IconButton
               icon={{
                 android: require('@expo/material-symbols/download.xml'),
@@ -73,9 +96,12 @@ export default function UploadScreen() {
           </View>
         </View>
       ) : (
+        // PRE UPLOAD OPTIONS
         <View style={styles.footerContainer}>
-          <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
-          <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
+          <View style={styles.mainButtonsRow}>
+            <Button theme="primary" label="Photo Library" onPress={pickImageAsync} />
+            <Button theme="primary" label="Camera" onPress={openCameraAsync} />
+          </View>
         </View>
       )}
     </SafeAreaView>
@@ -113,4 +139,7 @@ const styles = StyleSheet.create({
   alignItems: 'center',
   flexDirection: 'row',
   },
+  mainButtonsRow: {
+
+  }
 });
