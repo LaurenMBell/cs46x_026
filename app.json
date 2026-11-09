@@ -33,13 +33,15 @@
           "imageWidth": 76
         }
       ],
-      "expo-image", 
+      "expo-image",
       [
         "expo-media-library",
         {
           "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos and videos."
         }
-      ]
+      ],
+      "@maplibre/maplibre-react-native",
+      "@rnmapbox/maps"
     ],
     "experiments": {
       "typedRoutes": true,
