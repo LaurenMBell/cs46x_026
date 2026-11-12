@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import { View, StyleSheet } from "react-native";
-import { Map } from "maplibre-gl";
+import { Map, setWorkerUrl } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+
+setWorkerUrl("/maplibre-gl-worker.mjs");
 
 export default function MapScreen() {
   const containerRef = useRef<HTMLDivElement>(null);
