@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function MapScreen() {
+export default function FeedScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Map screen</Text>
+      <Text style={styles.text}>Feed screen</Text>
     </View>
   );
 }
