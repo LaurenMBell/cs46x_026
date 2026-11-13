@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Map, setWorkerUrl } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-setWorkerUrl("/maplibre-gl-worker.mjs");
+setWorkerUrl("/maplibre-gl-worker.mjs"); //https://maplibre.org/maplibre-gl-js/docs/ <- setWorkerURL() under Vite instructions
 
 export default function MapScreen() {
   const containerRef = useRef<HTMLDivElement>(null);
